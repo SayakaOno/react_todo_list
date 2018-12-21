@@ -13,3 +13,11 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.ui.inverted.list>.item .header {
+  margin: 15px 0;
+}
+
+.ui.inverted.list>.item .header label {
+  color: rgba(255,255,255,.9)!important;
+}
