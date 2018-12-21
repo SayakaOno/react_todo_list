@@ -1,16 +1,15 @@
 import React from 'react';
 
 class TodoItem extends React.Component {
-  state = { completed: true };
 
   render() {
-    const {text, completed} = this.props.item;
+    const {id, text, completed} = this.props.item;
     
     return (
       <div className="item">
         <div className="content">
           <div className="header ui checkbox">
-            <input type="checkbox" checked={this.state.completed}/>
+            <input onChange={() => this.props.onChange(id)} type="checkbox" checked={completed}/>
             <label htmlFor="">{text}</label>
           </div>
         </div>
