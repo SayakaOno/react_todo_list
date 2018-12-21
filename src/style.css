@@ -4,7 +4,7 @@ body {
 
 .navbar {
   height: 100px;
-  background-color: #333;
+  background-color: firebrick;
   color: whitesmoke;
   margin-bottom: 15px;
   text-align: center;
@@ -12,6 +12,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.ui.inverted.segment {
+  background-color: #333333;
 }
 
 .ui.inverted.list>.item .header {

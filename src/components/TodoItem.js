@@ -14,8 +14,18 @@ class TodoItem extends React.Component {
       <div className="item">
         <div className="content">
           <div className="header ui checkbox">
-            <input id={`item${id}`} onChange={() => this.props.onChange(id)} type="checkbox" checked={completed}/>
-            <label style={completed ? completedStyle : null} htmlFor={`item${id}`}>{text}</label>
+            <input
+              id={`item${id}`}
+              onChange={() => this.props.onChange(id)}
+              type="checkbox"
+              checked={completed}
+            />
+            <label
+              style={completed ? completedStyle : null}
+              onClick={() => this.props.onClick(id)}
+            >
+              {text}
+            </label>
           </div>
         </div>
       </div>

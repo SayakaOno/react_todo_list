@@ -3,7 +3,7 @@ import React from 'react';
 class Header extends React.Component {
   render() {
     return (
-      <header className="navbar">header!</header>
+      <header className="navbar">TODO List</header>
     )
   }
 }
