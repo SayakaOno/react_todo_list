@@ -17,13 +17,35 @@ class MainContent extends React.Component {
     });
   }
 
+  addItem = (text) => {
+    this.state.todos.push({
+      id: new Date(),
+      text,
+      completed: false
+    });
+  }
+
+  deleteItem = (id) => {
+    this.setState(prevState => {
+      const updatedTodos = prevState.todos.filter(value => value.id !== id);
+      return {todos: updatedTodos};
+    });
+  }
+
   render() {
     const todoItems =  this.state.todos.map(item => {
-      return <TodoItem onChange={this.onCheckboxClicked} key={item.id} item={item} />;
+      return (
+        <TodoItem
+          onChange={this.onCheckboxClicked}
+          onClick={this.deleteItem}
+          key={item.id}
+          item={item}
+        />
+      );
     });
 
     return (
-      <main style={{margin: 30}}>
+      <main style={{margin: "100px"}}>
         <div className="ui inverted segment" style={{maxWidth: 400, margin: '0 auto'}}>
           <div className="ui inverted relaxed divided list">
             {todoItems}
