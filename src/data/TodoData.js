@@ -11,17 +11,17 @@ const todoData = [
   },
   {
     id: 3,
-    text: "cook lunch",
+    text: "cook",
     completed: true
   },
   {
     id: 4,
-    text: "send mail",
+    text: "clean",
     completed: false
   },
   {
     id: 5,
-    text: "practice English",
+    text: "laundry",
     completed: false
   }
 ]
