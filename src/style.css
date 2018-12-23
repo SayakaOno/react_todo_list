@@ -16,6 +16,7 @@ body {
 
 .ui.inverted.segment {
   background-color: #333333;
+  margin-bottom: 50px!important;
 }
 
 .ui.inverted.list>.item .header {
@@ -43,4 +44,10 @@ body {
 
 .todo-item:hover i {
   display: block;
+}
+
+.add.button {
+  font-size: 20px;
+  display: block;
+  margin: 0 auto;
 }

@@ -17,11 +17,14 @@ class MainContent extends React.Component {
     });
   }
 
-  addItem = (text) => {
-    this.state.todos.push({
-      id: new Date(),
-      text,
-      completed: false
+  addItem = () => {
+    this.setState(prevState => {
+      let updatedTodos = prevState.todos.push({
+        id: Date.now(),
+        text: '',
+        completed: false
+      });
+      return updatedTodos;
     });
   }
 
@@ -51,6 +54,12 @@ class MainContent extends React.Component {
             {todoItems}
           </div>
         </div>
+        <button
+          className="ui grey button add"
+          onClick={this.addItem}
+        >
+          Add todo
+        </button>
       </main>
     );
   }
