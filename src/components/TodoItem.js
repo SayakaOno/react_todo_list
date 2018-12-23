@@ -11,7 +11,9 @@ class TodoItem extends React.Component {
     }
     
     return (
-      <div className="item">
+      <div
+        className="item todo-item" 
+      >
         <div className="content">
           <div className="header ui checkbox">
             <input
@@ -22,10 +24,10 @@ class TodoItem extends React.Component {
             />
             <label
               style={completed ? completedStyle : null}
-              onClick={() => this.props.onClick(id)}
             >
               {text}
             </label>
+            <i className="fas fa-trash-alt" onClick={() => this.props.onClick(id)}></i>
           </div>
         </div>
       </div>

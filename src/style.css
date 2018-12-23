@@ -25,3 +25,22 @@ body {
 .ui.inverted.list>.item .header label {
   color: rgba(255,255,255,.9)!important;
 }
+
+.todo-item {
+  position: relative;
+}
+
+.todo-item i {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 0;
+}
+
+.todo-item i:hover {
+  cursor: pointer;
+}
+
+.todo-item:hover i {
+  display: block;
+}
