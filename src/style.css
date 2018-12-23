@@ -25,6 +25,8 @@ body {
 
 .ui.inverted.list>.item .header label {
   color: rgba(255,255,255,.9)!important;
+  width: fit-content;
+  height: fit-content;
 }
 
 .todo-item {

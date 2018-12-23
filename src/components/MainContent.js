@@ -5,15 +5,26 @@ import todoData from '../data/TodoData';
 class MainContent extends React.Component {
   state = { todos: todoData };
 
-  onCheckboxClicked = (id) => {
+  handleChange = (e, id, text="") => {
+    if (e.target.type === 'checkbox') {
+      this.setState(prevState => {
+        const updatedTodos = prevState.todos.map(todo => {
+          if (todo.id === id) {
+            todo.completed = !todo.completed;
+          }
+          return todo;
+        })
+        return updatedTodos;
+      });
+    }
     this.setState(prevState => {
-      const updatedTodos = prevState.todos.map(todo => {
-        if (todo.id === id) {
-          todo.completed = !todo.completed;
-        }
-        return todo;
-      })
-      return updatedTodos;
+      let updateTodos = prevState.todos.slice();
+      updateTodos.find((item, index) => {
+        if (item.id === id) {
+          updateTodos[index].text = text;
+        } 
+      });
+      return updateTodos;
     });
   }
 
@@ -35,11 +46,23 @@ class MainContent extends React.Component {
     });
   }
 
+  editEnd = (id, text) => {
+    this.setState(prevState => {
+      const updatedTodos = prevState.todos.slice();
+      updatedTodos.todos.forEach(item => {
+        if (item.id === id) {
+          item.text = text;
+        }
+      });
+      return updatedTodos;
+    })
+  }
+
   render() {
     const todoItems =  this.state.todos.map(item => {
       return (
         <TodoItem
-          onChange={this.onCheckboxClicked}
+          onChange={this.handleChange}
           onClick={this.deleteItem}
           key={item.id}
           item={item}
