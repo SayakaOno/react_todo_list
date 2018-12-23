@@ -3,7 +3,8 @@ import React from 'react';
 class TodoItem extends React.Component {
   state = { editable: false }
 
-  onLabelClick = () => {
+  onLabelClick = (e) => {
+    if (e.target.tagName !== 'LABEL') {return;}
     this.setState({ editable: true });
   };
 
@@ -16,9 +17,11 @@ class TodoItem extends React.Component {
     if (this.state.editable) {
       return (
         <input
+          type="text"
           value={text}
           onChange={(e) => this.onInputChange(e, id)}
-          onDoubleClick={this.setState({editable: false})}
+          onBlur = {() => this.setState({ editable: false })}
+          autoFocus={true}
         />
       );
     } 
@@ -41,13 +44,13 @@ class TodoItem extends React.Component {
           <div className="header ui checkbox">
             <input
               id={`item${id}`}
-              onChange={() => this.props.onChange(id)}
+              onChange={(e) => this.props.onChange(e, id)}
               type="checkbox"
               checked={completed}
             />
             <label
               style={completed ? completedStyle : null}
-              onDoubleClick={this.onLabelClick}
+              onDoubleClick={e => this.onLabelClick(e)}
             >
               {this.renderContent(text, id)}
             </label>
