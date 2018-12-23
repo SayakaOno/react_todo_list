@@ -16,6 +16,7 @@ class MainContent extends React.Component {
         })
         return updatedTodos;
       });
+      return;
     }
     this.setState(prevState => {
       let updateTodos = prevState.todos.slice();
