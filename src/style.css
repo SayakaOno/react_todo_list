@@ -16,6 +16,8 @@ body {
 
 .ui.inverted.segment {
   background-color: #333333;
+  padding-right: 35px;
+  padding-left: 35px;
   margin-bottom: 50px!important;
 }
 
@@ -26,7 +28,8 @@ body {
 .ui.inverted.list>.item .header label {
   color: rgba(255,255,255,.9)!important;
   width: fit-content;
-  height: fit-content;
+  height: 30px;
+  margin-top: 25px;
 }
 
 .todo-item {
@@ -48,8 +51,24 @@ body {
   display: block;
 }
 
+.todo-item[type="text"] {
+  vertical-align: top;
+}
+
+input {
+  border: none!important;
+  border-radius: 1px;
+  margin-top: -5px;
+  padding: 5px;
+}
+
+input:focus {
+  outline: none;
+}
+
 .add.button {
   font-size: 20px;
   display: block;
   margin: 0 auto;
 }
+
