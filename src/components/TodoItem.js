@@ -11,7 +11,12 @@ class TodoItem extends React.Component {
   onInputChange = (e, id) => {
     let text = e.target.value;
     this.props.onChange(e, id, text);
-  }
+  };
+
+  onInputKeydown = (e, text, id) => {
+    if (e.key !== 'Enter') { return; }
+    this.finishEdit(text, id);
+  };
 
   finishEdit = (text, id) => {
     if (!text) {
@@ -19,7 +24,7 @@ class TodoItem extends React.Component {
       return;
     };
     this.setState({ editable: false });
-  }
+  };
 
   renderContent = (text, id) => {
     if (this.state.editable | !text) {
@@ -29,12 +34,13 @@ class TodoItem extends React.Component {
           value={text}
           onChange={(e) => this.onInputChange(e, id)}
           onBlur = {() => this.finishEdit(text, id)}
+          onKeyDown = {(e) => this.onInputKeydown(e, text, id)}
           autoFocus={true}
         />
       );
     } 
     return text;
-  }
+  };
 
   render() {
     const {id, text, completed} = this.props.item;
