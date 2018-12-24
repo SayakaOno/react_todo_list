@@ -63,7 +63,7 @@ class MainContent extends React.Component {
     const todoItems = this.state.todos.length === 0
     ? null
     : (
-      <div className="ui inverted segment" style={{maxWidth: 400, margin: '0 auto'}}>
+      <div className="ui inverted segment">
         <div className="ui inverted relaxed divided list">
         {this.state.todos.map(item => {
           return (
@@ -80,7 +80,7 @@ class MainContent extends React.Component {
     );
 
     return (
-      <main style={{margin: "100px"}}>
+      <main>
         {todoItems}
         <button
           className="ui grey button add"

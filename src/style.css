@@ -3,15 +3,16 @@ body {
 }
 
 .navbar {
-  height: 100px;
   background-color: firebrick;
   color: whitesmoke;
   margin-bottom: 15px;
-  text-align: center;
-  font-size: 30px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: 30px 0;
+}
+
+main {
+  margin: 50px;
 }
 
 .ui.inverted.segment {
@@ -19,6 +20,8 @@ body {
   padding-right: 35px;
   padding-left: 35px;
   margin-bottom: 50px!important;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .ui.inverted.list>.item .header {
