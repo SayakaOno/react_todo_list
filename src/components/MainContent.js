@@ -60,24 +60,28 @@ class MainContent extends React.Component {
   }
 
   render() {
-    const todoItems =  this.state.todos.map(item => {
-      return (
-        <TodoItem
-          onChange={this.handleChange}
-          onClick={this.deleteItem}
-          key={item.id}
-          item={item}
-        />
-      );
-    });
+    const todoItems = this.state.todos.length === 0
+    ? null
+    : (
+      <div className="ui inverted segment" style={{maxWidth: 400, margin: '0 auto'}}>
+        <div className="ui inverted relaxed divided list">
+        {this.state.todos.map(item => {
+          return (
+            <TodoItem
+              onChange={this.handleChange}
+              onClick={this.deleteItem}
+              key={item.id}
+              item={item}
+            />
+          );
+        })}
+        </div>
+      </div>
+    );
 
     return (
       <main style={{margin: "100px"}}>
-        <div className="ui inverted segment" style={{maxWidth: 400, margin: '0 auto'}}>
-          <div className="ui inverted relaxed divided list">
-            {todoItems}
-          </div>
-        </div>
+        {todoItems}
         <button
           className="ui grey button add"
           onClick={this.addItem}
