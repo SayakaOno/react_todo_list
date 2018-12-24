@@ -1,7 +1,7 @@
 import React from 'react';
 
 class TodoItem extends React.Component {
-  state = { editable: false }
+  state = { editable: this.props.item.text ? false : true }
 
   onLabelClick = (e) => {
     if (e.target.tagName !== 'LABEL') {return;}
@@ -13,14 +13,22 @@ class TodoItem extends React.Component {
     this.props.onChange(e, id, text);
   }
 
+  finishEdit = (text, id) => {
+    if (!text) {
+      this.props.onDelete(id);
+      return;
+    };
+    this.setState({ editable: false });
+  }
+
   renderContent = (text, id) => {
-    if (this.state.editable) {
+    if (this.state.editable | !text) {
       return (
         <input
           type="text"
           value={text}
           onChange={(e) => this.onInputChange(e, id)}
-          onBlur = {() => this.setState({ editable: false })}
+          onBlur = {() => this.finishEdit(text, id)}
           autoFocus={true}
         />
       );
@@ -54,7 +62,7 @@ class TodoItem extends React.Component {
             >
               {this.renderContent(text, id)}
             </label>
-            <i className="fas fa-trash-alt" onClick={() => this.props.onClick(id)}></i>
+            <i className="fas fa-trash-alt" onClick={() => this.props.onDelete(id)}></i>
           </div>
         </div>
       </div>

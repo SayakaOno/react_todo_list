@@ -69,7 +69,7 @@ class MainContent extends React.Component {
           return (
             <TodoItem
               onChange={this.handleChange}
-              onClick={this.deleteItem}
+              onDelete={this.deleteItem}
               key={item.id}
               item={item}
             />
