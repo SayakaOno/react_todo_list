@@ -1,7 +1,7 @@
 import React from 'react';
 
 class TodoItem extends React.Component {
-  state = { editable: this.props.item.text ? false : true }
+  state = { editable: this.props.item.text ? false : true };
 
   onLabelClick = (e) => {
     if (e.target.tagName !== 'LABEL') {return;}
@@ -51,9 +51,7 @@ class TodoItem extends React.Component {
     }
     
     return (
-      <div
-        className="item todo-item" 
-      >
+      <div className="item todo-item">
         <div className="content">
           <div className="header ui checkbox">
             <input

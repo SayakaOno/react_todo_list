@@ -38,14 +38,14 @@ class MainContent extends React.Component {
       });
       return updatedTodos;
     });
-  }
+  };
 
   deleteItem = (id) => {
     this.setState(prevState => {
       const updatedTodos = prevState.todos.filter(value => value.id !== id);
       return {todos: updatedTodos};
     });
-  }
+  };
 
   editEnd = (id, text) => {
     this.setState(prevState => {
@@ -57,7 +57,7 @@ class MainContent extends React.Component {
       });
       return updatedTodos;
     })
-  }
+  };
 
   render() {
     const todoItems = this.state.todos.length === 0
