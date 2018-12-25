@@ -1,9 +1,8 @@
 import React from 'react';
 import TodoItem from './TodoItem';
-import todoData from '../data/TodoData';
 
 class MainContent extends React.Component {
-  state = { todos: todoData };
+  state = { todos: [] };
 
   handleChange = (e, id, text="") => {
     if (e.target.type === 'checkbox') {
