@@ -29,9 +29,20 @@ class MainContent extends React.Component {
   }
 
   addItem = () => {
+<<<<<<< HEAD
     this.setState({
       todos: [...this.state.todos, {id: Date.now(), text: '', completed: false }]
     })
+=======
+    this.setState(prevState => {
+      let updatedTodos = prevState.todos.push({
+        id: Date.now(),
+        text: '',
+        completed: false
+      });
+      return updatedTodos;
+    });
+>>>>>>> e0630275210318866b62bcdc79f520148301d68f
   };
 
   deleteItem = (id) => {
