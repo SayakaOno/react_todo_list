@@ -1,7 +1,11 @@
 import React from 'react';
 
 class TodoItem extends React.Component {
-  state = { editable: this.props.item.text ? false : true };
+  state = { editable: true };
+
+  componentDidMount = () => {
+    this.setState({ editable: this.props.item.text ? false : true });
+  }
 
   onLabelClick = (e) => {
     if (e.target.tagName !== 'LABEL') {return;}
