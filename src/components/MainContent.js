@@ -1,43 +1,36 @@
-import React from 'react';
-import TodoItem from './TodoItem';
+import React from "react";
+import TodoItem from "./TodoItem";
 
 class MainContent extends React.Component {
   state = { todos: [] };
 
-  handleChange = (e, id, text="") => {
-    if (e.target.type === 'checkbox') {
-      this.setState(prevState => {
-        const updatedTodos = prevState.todos.map(todo => {
-          if (todo.id === id) {
-            todo.completed = !todo.completed;
-          }
-          return todo;
-        })
-        return updatedTodos;
-      });
-      return;
+  handleChange = (e, id, text = "") => {
+    let todos = [...this.state.todos];
+    let targetTodo = todos.find(todo => todo.id === id);
+    let index = todos.indexOf(targetTodo);
+    todos[index] = { ...targetTodo };
+
+    if (e.target.type === "checkbox") {
+      todos[index].completed = !this.state.todos[index].completed;
+    } else {
+      todos[index].text = text;
     }
-    this.setState(prevState => {
-      let updateTodos = prevState.todos.slice();
-      updateTodos.find((item, index) => {
-        if (item.id === id) {
-          updateTodos[index].text = text;
-        } 
-      });
-      return updateTodos;
-    });
-  }
+    this.setState({ todos });
+  };
 
   addItem = () => {
     this.setState({
-      todos: [...this.state.todos, {id: Date.now(), text: '', completed: false }]
-    })
+      todos: [
+        ...this.state.todos,
+        { id: Date.now(), text: "", completed: false }
+      ]
+    });
   };
 
-  deleteItem = (id) => {
+  deleteItem = id => {
     this.setState(prevState => {
       const updatedTodos = prevState.todos.filter(value => value.id !== id);
-      return {todos: updatedTodos};
+      return { todos: updatedTodos };
     });
   };
 
@@ -50,36 +43,32 @@ class MainContent extends React.Component {
         }
       });
       return updatedTodos;
-    })
+    });
   };
 
   render() {
-    const todoItems = this.state.todos.length === 0
-    ? null
-    : (
-      <div className="ui inverted segment">
-        <div className="ui inverted relaxed divided list">
-        {this.state.todos.map(item => {
-          return (
-            <TodoItem
-              onChange={this.handleChange}
-              onDelete={this.deleteItem}
-              key={item.id}
-              item={item}
-            />
-          );
-        })}
+    const todoItems =
+      this.state.todos.length === 0 ? null : (
+        <div className="ui inverted segment">
+          <div className="ui inverted relaxed divided list">
+            {this.state.todos.map(item => {
+              return (
+                <TodoItem
+                  onChange={this.handleChange}
+                  onDelete={this.deleteItem}
+                  key={item.id}
+                  item={item}
+                />
+              );
+            })}
+          </div>
         </div>
-      </div>
-    );
+      );
 
     return (
       <main>
         {todoItems}
-        <button
-          className="ui grey button add"
-          onClick={this.addItem}
-        >
+        <button className="ui grey button add" onClick={this.addItem}>
           Add todo
         </button>
       </main>
