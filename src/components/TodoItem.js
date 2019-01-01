@@ -1,14 +1,16 @@
-import React from 'react';
+import React from "react";
 
 class TodoItem extends React.Component {
   state = { editable: true };
 
   componentDidMount = () => {
     this.setState({ editable: this.props.item.text ? false : true });
-  }
+  };
 
-  onLabelClick = (e) => {
-    if (e.target.tagName !== 'LABEL') {return;}
+  onLabelClick = e => {
+    if (e.target.tagName !== "LABEL") {
+      return;
+    }
     this.setState({ editable: true });
   };
 
@@ -18,7 +20,9 @@ class TodoItem extends React.Component {
   };
 
   onInputKeydown = (e, text, id) => {
-    if (e.key !== 'Enter') { return; }
+    if (e.key !== "Enter") {
+      return;
+    }
     this.finishEdit(text, id);
   };
 
@@ -26,7 +30,7 @@ class TodoItem extends React.Component {
     if (!text) {
       this.props.onDelete(id);
       return;
-    };
+    }
     this.setState({ editable: false });
   };
 
@@ -36,41 +40,44 @@ class TodoItem extends React.Component {
         <input
           type="text"
           value={text}
-          onChange={(e) => this.onInputChange(e, id)}
-          onBlur = {() => this.finishEdit(text, id)}
-          onKeyDown = {(e) => this.onInputKeydown(e, text, id)}
+          onChange={e => this.onInputChange(e, id)}
+          onBlur={() => this.finishEdit(text, id)}
+          onKeyDown={e => this.onInputKeydown(e, text, id)}
           autoFocus={true}
         />
       );
-    } 
+    }
     return text;
   };
 
   render() {
-    const {id, text, completed} = this.props.item;
+    const { id, text, completed } = this.props.item;
     const completedStyle = {
-      fontStyle: 'italic',
+      fontStyle: "italic",
       color: "#cdcdcd",
       textDecoration: "line-through"
-    }
-    
+    };
+
     return (
       <div className="item todo-item">
         <div className="content">
           <div className="header ui checkbox">
             <input
               id={`item${id}`}
-              onChange={(e) => this.props.onChange(e, id)}
+              onChange={e => this.props.onChange(e, id)}
               type="checkbox"
               checked={completed}
             />
             <label
               style={completed ? completedStyle : null}
-              onDoubleClick={e => this.onLabelClick(e)}
+              onDoubleClick={this.onLabelClick}
             >
               {this.renderContent(text, id)}
             </label>
-            <i className="fas fa-trash-alt" onClick={() => this.props.onDelete(id)}></i>
+            <i
+              className="fas fa-trash-alt"
+              onClick={() => this.props.onDelete(id)}
+            />
           </div>
         </div>
       </div>
